@@ -14,8 +14,7 @@ namespace apiSmartAgriculture.Models
         public int EdgeNodeClassID { get; set; }
         public int GatewayID { get; set; }
         public string IP { get; set; }
-        public string comments { get; set; }
+        public string Comments { get; set; }
         public bool Available { get; set; }
-
     }
 }
