@@ -27,6 +27,8 @@ jobs:
 
       - name: 'Resolve Project Dependencies Using Dotnet'
         shell: pwsh
+        env:
+          CONNECTIONSTRING: ${{ secrets.CONNECTIONSTRING }}
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           dotnet build --configuration Release --output ./output
