@@ -36,22 +36,6 @@ namespace apiSmartAgriculture
                 SqlCommand command = new(query, connection);
                 SqlDataAdapter da = new(command);
                 await Task.Run(() => da.Fill(dt));
-                //var reader = await command.ExecuteReaderAsync();
-                //while (reader.Read())
-                //{
-                //    EdgeNode edgeNode = new()
-                //    {
-                //        Id = (int)reader["id"],
-                //        Hostname = reader["hostname"].ToString(),
-                //        Serial = reader["serial"].ToString(),
-                //        EdgeNodeClassID = (int)reader["edgeNodeClassID"],
-                //        GatewayID = (int)reader["gatewayID"],
-                //        IP = reader["IP"].ToString(),
-                //        Comments = reader["comments"].ToString(),
-                //        Available = (bool)reader["available"]
-                //    };
-                //    edgeNodesList.Add(edgeNode);
-                //}
             }
             catch (Exception e)
             {
