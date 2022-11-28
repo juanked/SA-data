@@ -25,7 +25,7 @@ namespace apiSmartAgriculture
             DataTable dt = new();
             try
             {
-                using SqlConnection connection = new(Environment.GetEnvironmentVariable("ConnectionString"));
+                using SqlConnection connection = new(Environment.GetEnvironmentVariable("CONNECTIONSTRING"));
                 string query = @"SELECT * FROM [edgeNode]";
                 if (Hostname != null)
                 {
