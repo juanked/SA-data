@@ -104,5 +104,31 @@ namespace apiSmartAgriculture
             }
             return new OkObjectResult(dt);
         }
+
+        [FunctionName("GetMqttConnectionFromPlantationID")]
+        public static async Task<IActionResult> GetMqttConnectionFromPlantationID(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "plantation/{id}/mqtt")] HttpRequest req, ILogger log, int id)
+        {
+            DataTable dt = new();
+            try
+            {
+                using SqlConnection connection = new(Environment.GetEnvironmentVariable("ConnectionString"));
+                string query = $"EXEC getMQTTConnectionFromPlantationID @plantationID = '{id}'";
+                log.LogInformation(query);
+                connection.Open();
+                SqlCommand command = new(query, connection);
+                SqlDataAdapter da = new(command);
+                await Task.Run(() => da.Fill(dt));
+            }
+            catch (Exception e)
+            {
+                log.LogError(e.ToString());
+            }
+            if (dt.Rows.Count == 0)
+            {
+                return new NotFoundResult();
+            }
+            return new OkObjectResult(dt);
+        }
     }
 }
